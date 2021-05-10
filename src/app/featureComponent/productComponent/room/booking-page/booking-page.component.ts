@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TenantServiceService } from 'src/app/services/tenantService/tenant-service.service';
 import { UserServiceService } from 'src/app/services/userService/user-service.service';
-import {PgServiceService} from '../../../../services/pgService/pg-service.service'
-import {TenantServiceService} from '../../../../services/tenantService/tenant-service.service'
-
+import {PgServiceService} from '../../../../services/pgService/pg-service.service';
 @Component({
   selector: 'app-booking-page',
   templateUrl: './booking-page.component.html',
@@ -11,13 +10,13 @@ import {TenantServiceService} from '../../../../services/tenantService/tenant-se
 })
 export class BookingPageComponent implements OnInit {
 
-  pg:any;
+  event:any;
   userdetail:any;
-  constructor(private route:Router,public pgserve:PgServiceService, private tenantServe:TenantServiceService,public user:UserServiceService ) { }
+  constructor(private route:Router,public eventserve:PgServiceService, private audienceServe:TenantServiceService,public user:UserServiceService ) { }
   isChecked:boolean=false;
   ngOnInit(): void {
-    this.pgserve.getPg(localStorage.getItem('pgid')).subscribe(res=>{
-      this.pg=res.result;
+    this.eventserve.getEventDetail(localStorage.getItem('eventId')).subscribe(res=>{
+      this.event=res.result;
     });
 
     this.user.getUserProfile(localStorage.getItem('id')).subscribe(res=>{
@@ -27,22 +26,29 @@ export class BookingPageComponent implements OnInit {
 
     onSubmit()
     {
-      let tenantobj=
+      console.log(this.event)
+      let registeredObj=
       {
-       userid:localStorage.getItem('id'),
-       pgid:localStorage.getItem('pgid'),
-       pgbookedname:this.pg.pgname,
+       eventid:localStorage.getItem('eventId'),
+       eventname:this.event.eventname,
        email:this.userdetail.email,
        phone:this.userdetail.phone,
        name:`${this.userdetail.firstname} ${this.userdetail.lastname}`,
-       payment:this.pg.rent,
-       ownerid:this.pg.ownerid
+       fee:this.event.fee,
+       managerid:this.event.managerid,
+       gender:this.userdetail.gender 
       }
 
-      this.tenantServe.bookPg(tenantobj).subscribe(res=>{
+      this.audienceServe.bookEvent(registeredObj).subscribe(res=>{
         console.log(res);
+        if(res.status==304){
+          alert("You Have registered this event already")
+        }
+        else{
+        localStorage.removeItem('eventId');
         alert("success");
-        this.route.navigate(['/tenant-dashboard/my-account']);
+        this.route.navigate(['/student-dashboard/my-account']);
+        }
       });
     }
 

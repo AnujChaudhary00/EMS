@@ -1,0 +1,41 @@
+.card
+{
+    box-shadow: 5px 5px 15px grey;
+}
+
+input{
+    border:none;
+    border-bottom: 1px solid grey;
+}
+
+input:focus{
+    outline:none;
+    animation:borderanimation .5s forwards ease-in-out;
+
+}
+
+.btn1
+{
+    background-color: rgb(240, 105, 57);
+    color: white;
+}
+
+.btn1:hover{
+  transform: scale(0.98);
+}
+
+
+@keyframes borderanimation
+{
+    0%{
+        border-bottom:1px solid rgb(240, 105, 57);
+        width:0px;
+        
+    }
+    100%
+    {
+        border-bottom:3px solid rgb(240, 105, 57);
+        width: 300px;
+       
+    }
+}

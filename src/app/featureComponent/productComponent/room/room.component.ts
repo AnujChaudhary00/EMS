@@ -1,9 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import jquery from 'jquery';
-import bootstrap from 'bootstrap';
 import {PgServiceService} from '../../../services/pgService/pg-service.service'
-import { pgList } from 'src/app/models/pg.type';
-import { Router,ActivatedRoute,NavigationExtras } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, pluck, switchMap } from 'rxjs/operators';
 
@@ -16,16 +13,16 @@ export class RoomComponent implements AfterViewInit {
 
   @ViewChild('searchForm') searchForm:NgForm
 
-  constructor(private pgServe:PgServiceService,private route:Router, private r:ActivatedRoute) { }
-  pgList;
-  pgCount=0;
+  constructor(private eventServe:PgServiceService,private route:Router, private r:ActivatedRoute) { }
+  eventList;
+  eventCount=0;
   mainImage;
   ngAfterViewInit(): void {
 
 
-    this.pgServe.getAllPg().subscribe(res=>{
-      this.pgList=res.result;
-      this.pgCount=res.recordCount;
+    this.eventServe.getAllEvent().subscribe(res=>{
+      this.eventList=res.result;
+      this.eventCount=res.recordCount;
     })
 
     const formValue=this.searchForm.valueChanges;
@@ -34,10 +31,11 @@ export class RoomComponent implements AfterViewInit {
       pluck('searchTerm'),
       debounceTime(700),
       distinctUntilChanged(),
-      switchMap(data=>this.pgServe.searchPg(data))
+      switchMap(data=>this.eventServe.searchEvent(data))
     ).subscribe(res=>{
-      this.pgList=res.result;
-      this.pgCount=res.count;
+      this.eventList=res.result;
+      this.eventCount=res.count;
+      console.log(res);
     },err=>{
       console.log(err);
     });
@@ -71,10 +69,9 @@ export class RoomComponent implements AfterViewInit {
 // });
   }
 
-  CheckIn(id)
+  register(id)
   {
-    console.log(id);
-    this.route.navigate(["check/"+id],{ relativeTo: this.r });
+    this.route.navigate([" /"+id],{ relativeTo: this.r });
   }
 
 }

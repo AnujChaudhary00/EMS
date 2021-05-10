@@ -10,25 +10,25 @@ import {TenantServiceService} from '../../../../services/tenantService/tenant-se
 })
 export class OwnerDashboardComponent implements OnInit {
 
-  constructor(public pgserve:PgServiceService, public tenantServe:TenantServiceService) { }
+  constructor(public eventserve:PgServiceService, public participantServe:TenantServiceService) { }
 
-  pgCount:Number=0;
-  tenantCount:Number=0;
+  eventCount:Number=0;
+  participantCount:Number=0;
   grivenceCount:any;
   ngOnInit(): void {
 
-    this.pgserve.getPgDetail(localStorage.getItem('id')).subscribe(res=>{
-
-      this.pgCount=res.count;
+    this.eventserve.getEvent(localStorage.getItem('id')).subscribe(res=>{
+      this.eventCount=res.count;
+      console.log(res);
     });
 
-   this.pgserve.grivence$.subscribe(res=>{
+   this.eventserve.grivence$.subscribe(res=>{
     this.grivenceCount =res;
    });
 
 
-    this.tenantServe.getMyTenant(localStorage.getItem('id')).subscribe(res=>{
-      this.tenantCount=res.count;
+    this.participantServe.getMyParticipant(localStorage.getItem('id')).subscribe(res=>{
+      this.participantCount=res.count;
     });
 
   }

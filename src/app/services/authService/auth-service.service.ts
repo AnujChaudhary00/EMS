@@ -22,13 +22,14 @@ export class AuthServiceService {
       localStorage.setItem('token',res.token);
       localStorage.setItem('id',res.id);
       localStorage.setItem('role',res.role);
-      if(res.role=='owner')
+      if(res.role=='organiser')
       {
+        location.reload();
         this.router.navigate(['dashboard']);
-        location.reload();
       }else{
-        this.router.navigate(['tenant-dashboard']);
         location.reload();
+        this.router.navigate(['student-dashboard']);
+     
       }
     }, err => {
       if (err instanceof HttpErrorResponse) {
@@ -72,14 +73,14 @@ export class AuthServiceService {
           localStorage.setItem('token',res.token);
           localStorage.setItem('id',res.id);
           localStorage.setItem('role',res.role);
-          if(res.role=='owner')
+          if(res.role=='organiser')
           {
             this.router.navigate(['dashboard']);
             setTimeout(function (){
               location.reload();
             },1000);
           }else{
-            this.router.navigate(['tenant-dashboard']);
+            this.router.navigate(['student-dashboard']);
             setTimeout(function (){
               location.reload();
             },1000);
@@ -101,17 +102,22 @@ export class AuthServiceService {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('role');
-    localStorage.removeItem('pgid');
+    localStorage.removeItem('orgid');
     this.router.navigate(['/home']);
   }
 
   getUserProfile(id: any): Observable<any> {
-    return this.httpClient.get(`${environment.USER_BASE_URL}/${environment.USER.GET_USER}`, id);
+    return this.httpClient.get(`${environment.USER_BASE_URL}/${environment.USER.GET_USER}/`+id);
   }
 
   forgotPassword(data):Observable<any>
   {
     return this.httpClient.get<any>(`${environment.USER_BASE_URL}/${environment.USER.FORGOT}/${data}`);
+  }
+
+  contactUs(data)
+  {
+    return this.httpClient.post<any>(`${environment.USER_BASE_URL}/contactus`,data);
   }
 
 

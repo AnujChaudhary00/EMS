@@ -24,3 +24,12 @@
     background-color: black;
 }
 
+.navbar-light
+{
+    box-shadow: 2px 2px 15px grey;
+}
+
+.nav1 .sr-only:hover{
+    border-bottom:2px solid rgb(240, 105, 57) !important ;
+}
+

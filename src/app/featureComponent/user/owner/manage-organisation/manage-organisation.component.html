@@ -1,0 +1,65 @@
+<div class="container p-3">
+    
+    <div class="row card">
+        <form  *ngIf="orgForm" [formGroup]="orgForm" (ngSubmit)="onSubmit()" class="my-3">
+            <div class="d-flex flex-direction-row align-items-center">
+                    <div class="d-flex row m-2">
+                        <img [src]="imgsrc" alt="Organisation Logo">
+                        <div class="row">
+                            <input class="custom-file-input" type="file" (change)="orgLogo($event.target.files)">
+                            <button *ngIf="upload" class="btn btn-primary" type="button" (click)="sendLogo()">Update image</button>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group d-flex flex-column align-items-center">
+                        <input type="text" class=" h3" placeholder="Organisation Name" formControlName="organisationname">
+                        <input type="date" id="datepicker" class=" mb-2" placeholder="Foundation Date" formControlName="foundationdate">
+                        <div class="row mx-5 details">
+                           <div class=" d-flex flex-direction-column">
+                            <label>CEO Name:</label>
+                            <input type="text" placeholder="Founder Name" formControlName="ceoname">
+                           </div>
+                           <div class="d-flex flex-direction-column">
+                            <label>CEO Name:</label>
+                            <input type="email" placeholder="Organistion Email" formControlName="email">
+                           </div>
+                           <div class="d-flex flex-direction-column">
+                            <label>CEO Name:</label>
+                            <input type="text" placeholder="Organisation Type" formControlName="type">
+                           </div>
+                           <div class="d-flex flex-direction-column">
+                            <label>CEO Name:</label>
+                            <input type="text" placeholder="Slogan or Moto" formControlName="slogan">
+                             </div>
+                        <div class="d-flex flex-direction-column">
+                            <label>Total Team Size</label>
+                            <input type="number" placeholder="Total Team Size" formControlName="teamsize">
+                        </div>
+                        <div class="d-flex flex-direction-column">
+                            <label>Total Event Organised</label>
+                            <input type="text" placeholder="Total Event Organised" formControlName="eventsconducted">
+                        </div>
+                        <div class="d-flex flex-direction-column">
+                            <label>Webiste Link/Social Link</label>
+                            <input type="text" placeholder="Webiste Link of Organisation" formControlName="link">
+                        </div>
+                        <div class="d-flex flex-direction-column">
+                            <label>Photos</label>
+                            <input class="form-control" type="file" (change)="uploadPhotos($event)" multiple>
+                        </div>
+                    </div>
+
+                    </div>
+            </div>
+            <div class="row mt-3 text-center">
+                <label class="h5" >About Organisation</label>
+                <textarea type="text" placeholder="Write About your Organisation" formControlName="aboutus"></textarea>
+            </div>
+    
+            <div class=" d-flex justify-content-center text-center mb-4">
+                <button class="btn btn-success" type="submit">Update Data</button>
+            </div>
+           
+        </form>
+    </div>
+</div>

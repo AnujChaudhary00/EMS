@@ -23,10 +23,10 @@ export class FavouriteComponent implements OnInit {
   create:boolean=false;
   history:boolean=false;
   type:String;
-  propid:String;
+  eventid:String;
   discribe:String;
   phonemail:String;
-  ownerid:String;
+  managerid:String;
   createTicket()
   {
     this.create=true;
@@ -46,7 +46,7 @@ export class FavouriteComponent implements OnInit {
   onSubmit() {
     let userid=localStorage.getItem('id');
     console.log(this.phonemail);
-    this.ticketServe.createTicket({'type':this.type,'propid':this.propid,'discription':this.discribe,'phonemail':this.phonemail,'ownerid':this.ownerid},userid).subscribe(res=>{
+    this.ticketServe.createTicket({'type':this.type,'eventid':this.eventid,'discription':this.discribe,'phonemail':this.phonemail,'managerid':this.managerid},userid).subscribe(res=>{
       console.log(res);
       if(res.status=200)
       {

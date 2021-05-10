@@ -27,39 +27,36 @@ export class PgServiceService {
     return this.httpClient.get<any>(`${environment.TICKET_BASE_URL}/${environment.TICKET.UPDATE_TICKET}/`+localStorage.getItem('id'));
   }
   
-  AddPg(data) {
-    return this.httpClient.post<any>(`${environment.PG_BASE_URL}/${environment.PG.CREATE_PG}`, data);
+  AddEvent(data) {
+    return this.httpClient.post<any>(`${environment.EVENT_BASE_URL}/${environment.EVENT.CREATE_EVENT}`, data);
   }
 
-  getPgDetail(id: any): Observable<any> {
-    return this.httpClient.get(`${environment.PG_BASE_URL}/${environment.PG.GET_PG}/${id}`);
+  getEventDetail(id: any): Observable<any> {
+    return this.httpClient.get(`${environment.EVENT_BASE_URL}/${environment.EVENT.GET_EVENT_DETAIL}/${id}`);
   }
-  getPg(id: any): Observable<any> {
-    return this.httpClient.get(`${environment.PG_BASE_URL}/pgDetail/${id}`);
-  }
-
-  getAllPg(): Observable<any> {
-    return this.httpClient.get(`${environment.PG_BASE_URL}/${environment.PG.GET_ALL_PG}`);
+  getEvent(id: any): Observable<any> {
+    return this.httpClient.get(`${environment.EVENT_BASE_URL}/${environment.EVENT.GET_EVENT}/${id}`);
   }
 
-  deletePg(id: any): Observable<any> {
-    return this.httpClient.delete(`${environment.PG_BASE_URL}/${environment.PG.DELETE_PG}/${id}`);
+  getAllEvent(): Observable<any> {
+    return this.httpClient.get(`${environment.EVENT_BASE_URL}/${environment.EVENT.GET_ALL_EVENT}`);
+  }
+
+  deleteEvent(id: any): Observable<any> {
+    return this.httpClient.delete(`${environment.EVENT_BASE_URL}/${environment.EVENT.DELETE_EVENT}/${id}`);
   } 
 
-  updatePg(id,data)
+  updateEvent(id,data)
   {
-    return this.httpClient.put<any>(`${environment.PG_BASE_URL}/${environment.PG.UPDATE_PG}/`+id,data);
+    console.log(id);
+    return this.httpClient.put<any>(`${environment.EVENT_BASE_URL}/${environment.EVENT.UPDATE_EVENT}/`+id,data);
   }
 
-  searchPg(data)
+  searchEvent(data)
   {
-    return this.httpClient.get<any>(`${environment.PG_BASE_URL}/${environment.PG.PG_BY_LOCATION}/`+data);
+    return this.httpClient.get<any>(`${environment.EVENT_BASE_URL}/${environment.EVENT.EVENT_BY_TYPE}/`+data);
   }
 
-  getStates()
-  {
-    return this.httpClient.get<any>('https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions',{})
-  }
 
   createTicket(data:any,id)
   {

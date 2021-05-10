@@ -1,0 +1,125 @@
+.card-img
+{
+  min-width: 100%;
+  height: 200px;
+}
+
+.searchBox
+{
+    width: 100%;
+    height: 200px;
+    background-image: url("../../../../assets/pgRooms.jpg");
+    background-size: cover;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.input-group
+{
+  z-index: 2;
+  width: 50%;
+}
+
+
+.filterBar
+{
+    width: 100%;
+    margin: 20px;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterBar button{
+  background-color: white;
+  color: black;
+  margin: 10px;
+}
+
+.black
+{
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.show-on-hover:hover > ul.dropdown-menu {
+    display: block;    
+}
+
+ul li a{
+  text-decoration: none;
+  color: black;
+  margin-left:10px ;
+}
+
+ul li:hover
+{
+  background-color: rgb(207, 207, 207);
+}
+
+.details
+{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.buttons
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+
+.btn{
+  border: 2px solid rgb(240, 105, 57);
+
+}
+
+.btn:hover
+{
+  background-color: rgb(240, 105, 57);
+  color: white  ;
+}
+
+.rent
+{
+  color:rgb(240, 105, 57);
+}
+
+.card1
+{
+  padding: 0px;
+  background-color: white;
+  box-shadow: 2px 2px 10px grey;
+  border-bottom: 3px solid rgb(240, 105, 57);
+}
+
+.searchTerm
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.carousel-control-next-icon,.carousel-control-prev-icon
+{
+  color:black;
+  background-color:black;
+}
+
+.d-flex p{
+    font-size: 15px;
+}

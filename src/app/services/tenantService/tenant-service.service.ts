@@ -13,20 +13,18 @@ export class TenantServiceService {
   constructor(private httpClient: HttpClient, public router: Router) { }
 
   public dashboard:BehaviorSubject<boolean>= new  BehaviorSubject(true);
+  id=localStorage.getItem('id');
 
-  bookPg(data) {
-    return this.httpClient.post<any>(`${environment.TENANT_BASE_URL}/${environment.TENANT.BOOK_PG}`, data);
+  bookEvent(data) {
+    return this.httpClient.post<any>(`${environment.AUDIENCE_BASE_URL}/${environment.AUDIENCE.BOOK_EVENT}/`+this.id, data);
   }
 
-  myBookings(id: any): Observable<any> {
-    return this.httpClient.get(`${environment.TENANT_BASE_URL}/${environment.TENANT.MY_BOOKINGS}/${id}`);
-  }
-  cancelBooking(id: any,pgid:any): Observable<any> {
-    return this.httpClient.delete(`${environment.TENANT_BASE_URL}/${environment.TENANT.CANCEL_BOOKING}`,{params:{'userid':id,'pgid':pgid}});
+  myEvents(id: any): Observable<any> {
+    return this.httpClient.get(`${environment.AUDIENCE_BASE_URL}/${environment.AUDIENCE.MY_EVENTS}/${this.id}`);
   }
 
-  getMyTenant(ownerid:any): Observable<any> {
-    return this.httpClient.get(`${environment.TENANT_BASE_URL}/${environment.TENANT.GET_MY_TENANT}/${ownerid}`);
+  getMyParticipant(ownerid:any): Observable<any> {
+    return this.httpClient.get(`${environment.AUDIENCE_BASE_URL}/${environment.AUDIENCE.LIST_AUDIENCE}/${this.id}`);
   }
 
 }

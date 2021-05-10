@@ -9,19 +9,19 @@ import {PgServiceService} from '../../../../services/pgService/pg-service.servic
 })
 export class RoomDetailComponent implements OnInit {
 
-  constructor(private pgserve:PgServiceService,private router:ActivatedRoute,private route:Router) { }
+  constructor(private eventserve:PgServiceService,private router:ActivatedRoute,private route:Router) { }
   id;
-  pg;
+  event;
   images:[any]
   selectimg
   ngOnInit(): void {
     this.id=this.router.snapshot.paramMap.get('id');
     console.log(this.id);
-      this.pgserve.getPg(this.id).subscribe(res=>{
-        this.pg=res.result;
+      this.eventserve.getEventDetail(this.id).subscribe(res=>{
+        console.log(res);
+        this.event=res.result;
         this.images=res.result.photos;
         this.selectimg=this.images[0];
-        console.log(this.pg);
       },err=>{
         console.log(err);
       })
@@ -35,10 +35,10 @@ onSelectImg(imgsrc)
 }
 
 
-bookPage()
+registerPage()
 {
-  localStorage.setItem('pgid',this.pg._id);
-  this.route.navigate(['book'],{relativeTo:this.router});
+  localStorage.setItem('eventId',this.event._id);
+  this.route.navigate(["register"],{relativeTo:this.router});
 }
 
 }

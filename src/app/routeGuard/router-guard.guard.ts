@@ -11,10 +11,11 @@ export class RouterGuardGuard implements CanActivate {
   canActivate():boolean{
       if(this._serve.isLoggedIn())
       {
+        console.log("Yes");
         return true
       }else{
         this._router.navigate(['/login'])
-        return false
+        return false;
       }
   }
   

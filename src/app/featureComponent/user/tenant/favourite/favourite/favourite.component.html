@@ -2,16 +2,15 @@
 <div class="card">
     <img *ngIf="create" (click)="back()" style="cursor: pointer;max-width: 60px;" src="https://img.icons8.com/ios/50/000000/circled-left-2.png"/>
 
-
 <div class="container" *ngIf="!create">
-    <p class="display-5 text-center">Grivence Mangement Portal</p>
+    <p class="h2 text-center">Grivence Mangement Portal</p>
     <div class="row boxticket p-5">
         <div class="col-md-4" (click)="createTicket()">
             <p class=" text-center text-weight-bold">Create Ticket</p>
             <img src="https://img.icons8.com/ios-filled/150/000000/plus.png"/>
         </div>
         <div class=" col-md-8 container">
-            <p class="display-5 text-center">Ticket History</p>
+            <p class="h3 text-center">Ticket History</p>
             <div class="row">
                 <div class="card m-2" *ngFor="let res of myTicket">
                     <div class="card-body">
@@ -38,10 +37,10 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="text-muted">Enter Property ID:</label><br>
-                <input type="text" name="propid" class="form-control" [(ngModel)]="propid">
-                <label class="text-muted">Enter Seller ID:</label><br>
-                <input type="text" name="ownerid" class="form-control" [(ngModel)]="ownerid">
+                <label class="text-muted">Enter Event ID:</label><br>
+                <input type="text" name="propid" class="form-control" [(ngModel)]="eventid">
+                <label class="text-muted">Enter Manager ID:</label><br>
+                <input type="text" name="ownerid" class="form-control" [(ngModel)]="managerid">
             </div>
             <div class="form-group">
                 <label class="text-muted">Discribe your Ticket</label><br>

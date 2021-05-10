@@ -45,7 +45,6 @@ export class MyProfileComponent implements OnInit {
 
   onSubmit(data)
   {
-    console.log(data);
     this.userServe.updateUser(localStorage.getItem('id'),this.saveProfile.value).subscribe(res=>{
       console.log("Success");
       location.reload();

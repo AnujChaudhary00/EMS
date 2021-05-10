@@ -1,4 +1,4 @@
-<h1 class="display-5 text-center">Tenant List</h1>
+<h1 class="display-5 text-center">Participant List</h1>
 
 <div class="row p-3">
     <table class="table table-striped table-dark ">
@@ -6,20 +6,20 @@
           <tr>
             <th scope="col">No.</th>
             <th scope="col">Name</th>
-            <th scope="col">Property Name</th>
+            <th scope="col">Event Registered</th>
             <th scope="col">Contact No.</th>
             <th scope="col">Email</th>
-            <th scope="col">Rent</th>
+            <th scope="col">Registration Fee Paid</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let list of myTenants; index as i">
+          <tr *ngFor="let list of myParticipant; index as i">
             <th scope="row" >{{i+1}}</th>
             <td>{{list.name}}</td>
-            <td>{{list.pgbookedname}}</td>
+            <td>{{list.eventname}}</td>
             <td>{{list.phone}}</td>
             <td>{{list.email}}</td>
-            <td>{{list.payment}}</td>
+            <td>{{list.fee}}</td>
           </tr>
  
        

@@ -10,37 +10,32 @@ import {Router} from '@angular/router';
 })
 export class PglistComponent implements OnInit {
 
-  constructor(private pgServe:PgServiceService,private fb: FormBuilder) { }
-  PgList:any
-  state=['Andhra Pradesh','	Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal'];
+  constructor(private eventServe:PgServiceService,private fb: FormBuilder) { }
+  eventList:any
   updateform:FormGroup;
   show:boolean=false;
-
   ngOnInit(): void {
 
     this.updateform = this.fb.group(
       {
-        pgname:['', Validators.required],
-        ownername:['', Validators.required],
-        bed:['', [Validators.required,Validators.pattern("[0-9]*$")]],
-        city:['', Validators.required],
-        pincode:['', [Validators.required,Validators.pattern("[0-9]{6}$")]],
-        country:['',Validators.required],
-        state:['', Validators.required],
+        eventname:['', Validators.required],
+        eventheadname:['', Validators.required],
+        organisation:[''],
+        date:['', Validators.required],
+        location:['',Validators.required],
         discription:['', Validators.required],
-        type:['', Validators.required],
-        rent:['', [Validators.required,Validators.pattern("[0-9]{2,5}$")]],
-        contactno:['', [Validators.required, Validators.minLength(10)]],
-        email: ['', Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]$")],
-        id:[''],
-        totalroom:['',Validators.pattern("[0-9]*$")]
+        eventType:['', Validators.required],
+        fee:['', [Validators.required,Validators.pattern("[0-9]{2,5}$")]],
+        managerid:[''] 
       }
     );
 
-    this.pgServe.getPgDetail(localStorage.getItem('id')).subscribe(res=>{
+    this.eventServe.getEvent(localStorage.getItem('id')).subscribe(res=>{
       if(res.status==200)
       {
-        this.PgList=res.result;
+        console.log(res.result);
+        this.eventList=res.result;
+        
       }else{
         console.log(res.message);
       }
@@ -50,53 +45,60 @@ export class PglistComponent implements OnInit {
 
   }
 
-  formAppear()
+  formAppear(id)
   {
+    console.log(id);
     if(this.show==false){
     this.show=true;
     }else{
       this.show=false;
     }
+    this.showData(id);
+
   }
-  id:any
+
+  id:any;
+
   showData(id)
   {
     this.id=id;
-    this.pgServe.getPgDetail(id).subscribe(res=>{
-      this.updateform.value.pgname=res.result.pgname;
-      this.updateform.value.bed=res.result.bed;
-      this.updateform.value.type=res.result.type;
-      this.updateform.value.rent=res.result.rent;
-      this.updateform.value.email=res.result.email;
-      this.updateform.value.contactno=res.result.contactno;
-      this.updateform.value.totalroom=res.result.totalroom;
-      this.updateform.value.discripition=res.result.discripition;
-      this.updateform.value.state=res.result.state;
-      this.updateform.value.pincode=res.result.pincode;
-      this.updateform.value.country=res.result.country;
-      this.updateform.value.city=res.result.city;
-      console.log(res.result);
+    this.eventServe.getEventDetail(id).subscribe(res=>{
+      this.updateform.value.eventname=res.result.eventname;
+      this.updateform.value.eventheadname=res.result.eventheadname;
+      this.updateform.value.organisation=res.result.organisation;
+      this.updateform.value.date=res.result.date;
+      this.updateform.value.location=res.result.location;
+      this.updateform.value.discription=res.result.discription;
+      this.updateform.value.eventType=res.result.eventType;
+      this.updateform.value.fee=res.result.fee;
+      this.updateform.value.managerid=res.result.managerid;
+
     },err=>{
       console.log(err);
     })
   }
 
-  updatePg()
+  updateEvent()
   {
-    this.pgServe.updatePg(this.id,this.updateform.value).subscribe(res=>{
+  this.updateform.value.managerid=localStorage.getItem('id');
+  console.log(this.updateform.value.managerid);
+    if(this.id!=null){
+    this.eventServe.updateEvent(this.id,this.updateform.value).subscribe(res=>{
       if(res.status==200)
       {
         alert("success");
         this.show=false;
+        location.reload();
       }
     },err=>{
       console.log(err);
     })
   }
+  }
 
-  deletePg(id)
+  deleteEvent(id)
   {
-    this.pgServe.deletePg(id).subscribe(res=>{
+    this.eventServe.deleteEvent(id).subscribe(res=>{
       if(res.status==200)
       {
         alert("successfully deleted");

@@ -8,7 +8,7 @@ img
 
 .card
 {
-    max-width: 500px;
+    
     background-color: black;
 }
 
@@ -28,3 +28,4 @@ form{
     background-color: black;
     color:grey;
 }
+

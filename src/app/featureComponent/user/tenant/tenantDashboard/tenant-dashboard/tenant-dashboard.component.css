@@ -40,7 +40,15 @@
   background-color: rgb(104, 161, 157);
 }
 
-@media screen and (max-height: 450px) {
+@media only screen and (max-width: 768px) {
+
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+  .navbar ul li
+  {
+    display: inline;
+    padding: auto;
+  }
+
 }
+

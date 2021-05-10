@@ -1,64 +1,44 @@
-<div class="row">
-  <div class="row">
-    <div class="row">
-        <img [src]="selectimg" alt="" class="img-main m-4">
-    </div>
-    <div class="row px-5">
-      <h4 class="h2 text-center text-dark mb-3">Gallery</h4>
-      <div class="column mb-4">
-        <div class="imgbar" *ngFor="let img of images">
-          <img [src]="img" alt="" class="img" (click)="onSelectImg(img)">
-        </div>
-      </div> 
-    </div>
-  </div>
-  <div class="row p-5 bg-light">
-    <div class="row">
-      <h1 class="display-5">{{pg.pgname}}</h1>
-      <p class="text-muted h4">{{pg.city}}, {{pg.pincode}},{{pg.state}}</p>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <hr>
-        <p class=" text-secondary h3 font-weight-bold">About</p>
-        <p class="text-dark text-weight-bold">{{pg.pgname}} is a {{pg.type}} type building, owned by
-          {{pg.ownername}}.<br>
-          {{pg.discription}}
+<div class="row mt-5 p-4">
+  <div class=" card bordertop col-md-8 left">
+    <div class="row bg-light p-3">
+      <h1 class="h1">{{event.eventname}}</h1>
+        <p class="text-dark text-weight-bold">{{event.eventname}} is a {{event.eventType}} type event, organised by
+          {{event.organisation}}. Event is head by Event Head Mr. {{event.eventheadname}}
+          {{event.discription}}
         </p>
-        <p class="text-secondary"><b>No. of beds: </b>{{pg.bed}}</p>
-        <p class="text-secondary"><b>Total available Rooms is:</b>{{pg.totalroom}}</p>
-        <p class="text-secondary"><b>Contact no. of Owner:</b>{{pg.contactno}}</p>
-        <p class="text-secondary"><b>Email of Owner:</b>{{pg.email}}</p>
-        <hr>
-        <div class="row aminities" style="color:tomato">
-          <p class="text-secondary pt-5 h3">Aminities</p>
-          <div class="col-md-3">
-            <img src="https://img.icons8.com/fluent/24/000000/lightning-bolt.png" />
-            <p class="">24*7 Power backup</p>
-          </div>
-          <div class="col-md-3">
-            <img src="https://img.icons8.com/fluent/24/000000/water-cooler.png" />
-            <p class="">24*7 Water Supply</p>
-          </div>
-          <div class="col-md-3">
-            <img src="https://img.icons8.com/color/24/000000/engineer.png" />
-            <p class="">On demand Maintanance</p>
-          </div>
-        </div>
-        <hr>
+
+    </div>
+   
+    <div class="row card mt-2">
+      <div class="row">
+          <img [src]="selectimg" alt="" class="img-main card-img">
       </div>
-      <div class="col-md-4 text-white">
-        <div class="col-md-12 bg-dark p-3">
-          <h1 class="display-5">Lease Amount:</h1>
-          <p class="text-muted">GST:</p>
-          <p class="text-muted">Services:</p>
-          <p class="text-muted">Secuirty:</p>
-         
-          <span class=" h3 text-success">  <p class=" h3 text-white">Total:</p> Rs. {{pg.rent}}</span>&nbsp;&nbsp;<span
-            class="text-muted"><del>{{pg.rent+2000}}</del></span>
-          <br>
-          <br><br>
-          <button class="btn btn-success item-align-center" (click)="bookPage()">proceed to Book</button>
+      <div class="row p-2">
+        <div class="column mb-2">
+          <div class="imgbar" *ngFor="let img of images">
+            <img [src]="img" alt="" class="img" (click)="onSelectImg(img)">
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>  
+ 
+  <div class="col-md-4 bg-light">  
+    <div class="row payment-card">
+      <div class="col-md-12 text-white">
+        <div class="col-md-12 bg-dark p-5">
+          <p class="text-muted">Register to receive hackathon updates, 
+            find teammates, and submit your entry</p>
+            <hr>
+            <h4 class="date text-primary1">Submission Closes on</h4>
+            <p class="text-muted">{{event.date}}</p>
+            <hr>
+            <p class="text-muted">Location : {{event.location}}</p>
+            <hr>
+            <div class="pay p-2">
+              <span class=" h3 text-success">  <p class=" h3 text-white1">Registration Fee:</p> Rs. {{event.fee}} <del class="text-muted"><small>{{event.fee+400}}</small></del></span>
+            <button class="btn btn-success item-align-center mt-2" (click)="registerPage()">proceed to Register</button>
+            </div>
         </div>
 
       </div>

@@ -2,9 +2,10 @@ export const environment = {
     production: false,
     BASE_URL:'http://localhost:3000',
     USER_BASE_URL:'http://localhost:3000/users',
-    PG_BASE_URL:'http://localhost:3000/pg',
-    TENANT_BASE_URL:'http://localhost:3000/tenant',
+    EVENT_BASE_URL:'http://localhost:3000/events',
     TICKET_BASE_URL:'http://localhost:3000/ticket',
+    AUDIENCE_BASE_URL:'http://localhost:3000/audience',
+    ORGANISATION_BASE_URL:'http://localhost:3000/organisation',
     USER:
     {
         GET_USER_LOGIN:'login',
@@ -17,22 +18,16 @@ export const environment = {
         LOGIN:'isLogin',
         FORGOT:'forgotPassword'
     },
-    PG:
+    EVENT:
     {
-        GET_ALL_PG:'listPg',
-        GET_PG:'searchPg',
-        CREATE_PG:'addPg',
-        UPDATE_PG:'updatePg',
-        DELETE_PG:'deletePg',
-        PG_BY_LOCATION:'searchLocation',
+        GET_ALL_EVENT:'listEvent',
+        GET_EVENT:'myEvent',
+        CREATE_EVENT:'addEvent',
+        UPDATE_EVENT:'updateEvent',
+        DELETE_EVENT:'deleteEvent',
+        EVENT_BY_TYPE:'searchType',
+        GET_EVENT_DETAIL:'eventDetail'
         // PG_BY_RENT:'searchRent',
-    },
-    TENANT:
-    {
-        GET_MY_TENANT:'listTenant',
-        BOOK_PG:'bookPg',
-        MY_BOOKINGS:'mybookings',
-        CANCEL_BOOKING:'cencelbooking'
     },
     PHONE:
     {
@@ -44,7 +39,22 @@ export const environment = {
         GET_TICKET:'getTicket',
         MY_TICKET:'myTicket',
         UPDATE_TICKET:'updateTicket'
+    },
+    AUDIENCE:{
+        LIST_AUDIENCE:'listAudience',
+        BOOK_EVENT:'bookEvent',
+        MY_EVENTS:'myEvents'
+    },
+    ORGANISATION:{
+        LIST_ORGANISATION:'listOrganisation',
+        ADD_ORGANISATION:'addOrganisation',
+        ADD_LOGO:'addLogo',
+        UPDATE_ORGANISATION:'updateOrganisation',
+        MY_ORGANISATION:'myOrganisation',
+        APPLY:'apply',
+        SEARCH:'search',
+        ORGANISATION_DETAIL:'organisation-detail',
+        MY_APPLICATION:'my-application'
     }
 
   };
-  

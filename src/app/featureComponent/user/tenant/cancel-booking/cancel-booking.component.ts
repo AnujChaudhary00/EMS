@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrganisationService } from 'src/app/services/Organisation/organisation.service';
 
 @Component({
   selector: 'app-cancel-booking',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CancelBookingComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private orgServe:OrganisationService) { }
+  applicationList:any;
   ngOnInit(): void {
+    this.orgServe.myApplication().subscribe(res=>{
+      if(res.status==500)
+      {
+        alert("error fetching data");
+      }
+        this.applicationList=res.result;
+    })
   }
 
 }

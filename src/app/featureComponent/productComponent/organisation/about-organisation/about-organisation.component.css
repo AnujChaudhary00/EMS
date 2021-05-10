@@ -1,0 +1,19 @@
+.row img{
+    margin: 10px;
+    width: 100%;
+    height: 300px;
+   border: 5px solid white;
+}
+
+.carousel{
+    border-top: 10px solid grey;
+}
+
+.carousel-item
+{
+    max-height: 500px;
+}
+
+.carousel a span{
+    background-color: black ;
+}

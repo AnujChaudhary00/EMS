@@ -11,13 +11,13 @@ export class OwnerGuard implements CanActivate {
   canActivate():boolean{
     if(this._serve.isLoggedIn())
     {
-      if(localStorage.getItem('role')=='owner')
+      if(localStorage.getItem('role')=='organiser')
       {
         return true;
       }
-      else if(localStorage.getItem('role')=='tenant')
+      else if(localStorage.getItem('role')=='student')
       {
-        this._router.navigate(['/tenant']);
+        this._router.navigate(['/student']);
         return false;
       }
     }else{

@@ -1,0 +1,131 @@
+
+.container1
+{
+    width: 100%;
+    margin: 0px;
+    height: 300px;
+
+}
+
+.services
+{
+    height: 600px;
+    
+}
+
+.services .col-md-4
+{
+    min-height: 100px;
+   margin: 20px;
+   background-color: rgb(63, 63, 63);
+   box-shadow: 5px 5px 0px rgb(0, 0, 0);
+   color:white;
+}
+
+.services .col-md-4:hover{
+    transform: translateY(-10px);
+    transition: 0.5s;
+}
+
+
+.hr{
+    width: 200px;
+  background-color: rgb(240, 105, 57);
+   height: 1px;
+  
+  }
+
+  .text
+  {
+      font-size: 18px;
+  }
+  
+  .why-us .card
+  {
+      min-width: 300px;
+    height: 300px;
+    color: rgb(0, 0, 0);
+    padding: auto;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 10px 10px grey;
+  }
+  .why-us .card img{
+    margin: auto;
+      width: 50%;
+  }
+
+  .why-us .card:hover{
+   
+    background-color: rgb(194, 188, 188);
+     transform: translateY(-10px);
+    transition: 0.5s;
+  } 
+  
+  .card-img-rounded
+  {
+    border-radius:60px ;
+  }
+
+    .team .row
+    {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .dev-1
+    {
+      height: 350px;
+      width: 350px;
+     background-image: url('../../../assets/Anuj.jpg');
+     background-size: cover;
+    }
+
+    .dev-2
+    {
+      height: 350px;
+      width: 350px;
+     background-image: url('../../../assets/vanshika.jpg');
+     background-size: cover;
+    }
+
+    .info
+    {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: absolute;
+      height: 350px;
+      width: 350px;
+      border-radius: 100%;
+    }
+
+    .info:hover
+    {
+     
+      justify-content: center;
+      background-color: rgba(2, 2, 2, 0.5);
+      transition: 0.5s;
+      border: 15px solid rgb(240, 105, 57);
+      color:rgb(240, 105, 57)
+    }
+
+
+    
+    
+    
+/*   
+  @keyframes borderanimation
+  {
+      0%{
+          border-bottom:1px solid rgb(240, 105, 57);
+          width:0px;    
+          
+      }
+      100%
+      {
+          border-bottom:3px solid rgb(240, 105, 57);
+          width: 300px;
+         
+      }
+  } */

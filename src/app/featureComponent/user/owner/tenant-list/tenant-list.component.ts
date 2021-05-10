@@ -8,12 +8,12 @@ import {TenantServiceService} from '../../../../services/tenantService/tenant-se
 })
 export class TenantListComponent implements OnInit {
 
-  constructor(private tenantServe:TenantServiceService) { }
-    myTenants:any;
+  constructor(private participantServe:TenantServiceService) { }
+    myParticipant:any;
     count:any;
   ngOnInit(): void {
-    this.tenantServe.getMyTenant(localStorage.getItem('id')).subscribe(res=>{
-      this.myTenants=res.result;
+    this.participantServe.getMyParticipant(localStorage.getItem('id')).subscribe(res=>{
+      this.myParticipant=res.result;
       this.count=res.count;
     })
   }

@@ -12,59 +12,54 @@ import {PgServiceService} from '../../../../services/pgService/pg-service.servic
 })
 export class AddPgComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private pgServe:PgServiceService,private router:Router) { }
-  savePg:FormGroup;
-  state=['Andhra Pradesh','	Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal'];
-  city=['Law gate', 'Jalandhar', 'Ludhiana', 'Phagwara', 'Hardaspur','Chandigarh', 'Delhi','Mumbai','Kolkata','Ahemdabad','Bhopal','Srinagar','Patna','Meerut','Lucknow','Karnal','Ambala','Bhiwani','Banglore', 'Gurgaon', 'Noida']
+  constructor(private fb: FormBuilder,private eventServe:PgServiceService,private router:Router) { }
+  saveEvent:FormGroup;
   filesToUpload: Array<File> = [];
 
   ngOnInit(): void {
-    this.savePg = this.fb.group(
+    
+    $(function () {
+      $("#datepicker").datepicker();
+    });
+
+    this.saveEvent = this.fb.group(
       {
-        pgname:['', Validators.required],
-        ownername:['', Validators.required],
-        bed:['', [Validators.required,Validators.pattern("[0-9]*$")]],
-        city:['', Validators.required],
-        pincode:['', [Validators.required,Validators.pattern("[0-9]{6}$")]],
-        country:['',Validators.required],
-        state:['', Validators.required],
+        eventname:['', Validators.required],
+        eventheadname:['', Validators.required],
+        organisation:['', Validators.required],
+        date:['', Validators.required],
+        location:['',Validators.required],
         discription:['', Validators.required],
-        type:['', Validators.required],
-        rent:['', [Validators.required,Validators.pattern("[0-9]{2,5}$")]],
-        contactno:['', [Validators.required, Validators.minLength(10)]],
-        email: ['', Validators.pattern("[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]$")],
-        id:[''],
-        totalroom:['',Validators.pattern("[0-9]*$")]
-      }
+        eventType:['', Validators.required],
+        fee:['', [Validators.required,Validators.pattern("[0-9]{2,5}$")]],
+        managerid:['']      }
     );
+
+
   }
 
 
   onSubmit()
   {
-    this.savePg.value.id=localStorage.getItem('id');
+    this.saveEvent.value.managerid=localStorage.getItem('id');
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
+
     for(let i =0; i < files.length; i++){
       formData.append("uploads[]", files[i], files[i]['name']);
     }
 
-    formData.append('pgname',this.savePg.value.pgname);
-    formData.append('ownername',this.savePg.value.ownername);
-    formData.append('bed',this.savePg.value.bed);
-    formData.append('city',this.savePg.value.city);
-    formData.append('pincode',this.savePg.value.pincode);
-    formData.append('country',this.savePg.value.country);
-    formData.append('state',this.savePg.value.state);
-    formData.append('discription',this.savePg.value.discription);
-    formData.append('type',this.savePg.value.type);
-    formData.append('rent',this.savePg.value.rent);
-    formData.append('contactno',this.savePg.value.contactno);
-    formData.append('email',this.savePg.value.email);
-    formData.append('id',this.savePg.value.id);
-    formData.append('totalroom',this.savePg.value.totalroom);
+     formData.append('eventname',this.saveEvent.value.eventname); 
+    formData.append('eventheadname',this.saveEvent.value.eventheadname);
+    formData.append('organisation',this.saveEvent.value.organisation);
+    formData.append('date',this.saveEvent.value.date);
+    formData.append('eventType',this.saveEvent.value.eventType);
+    formData.append('location',this.saveEvent.value.location);
+    formData.append('discription',this.saveEvent.value.discription);
+    formData.append('fee',this.saveEvent.value.fee);
+    formData.append('managerid',this.saveEvent.value.managerid);
 
-    this.pgServe.AddPg(formData).subscribe(res=>{
+    this.eventServe.AddEvent(formData).subscribe(res=>{
       if(res.status==200)
       {
         alert("Successfully Added");

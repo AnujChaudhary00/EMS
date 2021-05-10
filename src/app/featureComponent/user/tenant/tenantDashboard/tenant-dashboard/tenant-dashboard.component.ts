@@ -10,29 +10,30 @@ import {TenantServiceService} from '../../../../../services/tenantService/tenant
 })
 export class TenantDashboardComponent implements OnInit {
 
-  constructor(public pgserve:PgServiceService, public tenantServe:TenantServiceService) { }
-  tenantCount:Number=0;
+  constructor(public eventserve:PgServiceService, public participantServe:TenantServiceService) { }
+  eventCount:Number=0;
   grivenceCount:Number=0;
   showDashboard:boolean;
   ngOnInit(): void {
 
-    this.tenantServe.myBookings(localStorage.getItem('id')).subscribe(res=>{
-      this.tenantCount=res.count;
+    this.participantServe.myEvents(localStorage.getItem('id')).subscribe(res=>{
+      this.eventCount=res.count;
     })
 
 
-    this.pgserve.getMyTicket(localStorage.getItem('id')).subscribe(res=>{
+    this.eventserve.getMyTicket(localStorage.getItem('id')).subscribe(res=>{
       this.grivenceCount=res.count;
     });
 
-    this.tenantServe.dashboard.subscribe(res=>{
+    this.participantServe.dashboard.subscribe(res=>{
       this.showDashboard=res;
     })
   }
 
   donShow()
   {
-    this.tenantServe.dashboard.next(false);
+    this.participantServe.dashboard.next(false);
   }
+
 
 }

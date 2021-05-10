@@ -9,11 +9,11 @@ import {TenantServiceService} from '../../../../services/tenantService/tenant-se
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(public tenantServe:TenantServiceService) { }
-  myproperty
+  constructor(public participantServe:TenantServiceService) { }
+  myevents
   ngOnInit(): void {
-    this.tenantServe.myBookings(localStorage.getItem('id')).subscribe(res=>{
-      this.myproperty=res.result;
+    this.participantServe.myEvents(localStorage.getItem('id')).subscribe(res=>{
+      this.myevents=res.result;
       console.log(res.result);
     })
   }

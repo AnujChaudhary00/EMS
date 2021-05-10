@@ -1,1 +1,7 @@
-<p>cancel-booking works!</p>
+<div class=" mt-5 row bg-light p-3 m-5">
+    <div class="col bg-dark text-white m-2 p-2" *ngFor="let data of applicationList">
+        <h1 class="card-title">{{data.organisation}}</h1>
+        <p class="text-muted"> <b>Manager Id</b>  :{{data.managerid}}</p>
+        <p class="text-muted"> <b>Status:</b>  {{data.status}}</p>
+    </div>
+</div>
